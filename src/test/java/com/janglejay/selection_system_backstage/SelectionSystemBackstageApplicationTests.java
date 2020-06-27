@@ -71,7 +71,6 @@ class SelectionSystemBackstageApplicationTests {
         Student student = userService.getStudent(2);
         Student student1 = userService.getStudent(1);
         if (student != null) {
-
             System.out.println(student.getUser().getName());
         }
         System.out.println(student1.getUser().getName());
