@@ -47,6 +47,7 @@ public class LoginController {
 
     @PostMapping("login")
     public Map login(@RequestBody User loginUser, HttpServletResponse response){//直接在方法中注入HttpServletResponse response对象
+        System.out.println(userService.getUser(loginUser.getNumber()));
         User user = Optional.ofNullable(userService.getUser(loginUser.getNumber()))//判断其是否为空，不为空进入filter
                 .filter(u -> encoder.matches(loginUser.getPassword(),u.getPassword()))//过滤 返回ture则跳出
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.UNAUTHORIZED,"用户名或密码错误"));

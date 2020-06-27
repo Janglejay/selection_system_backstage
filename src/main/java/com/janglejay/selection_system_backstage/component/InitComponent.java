@@ -21,12 +21,10 @@ public class InitComponent implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         int number = 1001;
-        int number2 = 1002;
         User user = userService.getUser(number);
-        User user2 = userService.getUser(number2);
         if(user ==null){
             User u = new User();
-            u.setName("BO");
+            u.setName("Jeffrey");
             u.setNumber(number);
             u.setRole(User.Role.TUTOR);
             u.setPassword(encoder.encode(String.valueOf(number)));
@@ -38,21 +36,5 @@ public class InitComponent implements InitializingBean {
             t.setUser(u);
             userService.addTutor(t);
         }
-        if(user2 ==null){
-            User u = new User();
-            u.setName("Lily");
-            u.setNumber(number2);
-            u.setRole(User.Role.TUTOR);
-            u.setPassword(encoder.encode(String.valueOf(number2)));
-
-            Tutor t = new Tutor();//注意：tutor和user是组合关系，
-            // 直接持久化tutor是不行的 save User之后才能save Tutor
-
-//            userService.addTutor(u,t);//也可以使用级联的方法
-            t.setUser(u);
-            userService.addTutor(t);
-        }
-
-
     }
 }
