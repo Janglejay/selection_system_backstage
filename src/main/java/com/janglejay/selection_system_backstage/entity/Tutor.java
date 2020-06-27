@@ -20,6 +20,7 @@ public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    //用的级联就不用自己先保存user了
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @MapsId
     private User user;//依靠单向@OneToOne和@MapsId，与父表共享主键
